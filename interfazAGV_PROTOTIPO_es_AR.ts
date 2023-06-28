@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="es_AR">
 <context>
+    <name>FifthWindow</name>
+    <message>
+        <location filename="fifthwindow.ui" line="14"/>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="fifthwindow.ui" line="27"/>
+        <source>Volver principal</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Form</name>
     <message>
         <location filename="settingswindow.ui" line="14"/>
@@ -11,6 +24,19 @@
     <message>
         <location filename="settingswindow.ui" line="26"/>
         <source>PushButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FourthWindow</name>
+    <message>
+        <location filename="fourthwindow.ui" line="14"/>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="fourthwindow.ui" line="27"/>
+        <source>Volver principal</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -79,6 +105,19 @@
     </message>
     <message>
         <location filename="secondwindow.ui" line="53"/>
+        <source>Volver principal</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ThirdWindow</name>
+    <message>
+        <location filename="thirdwindow.ui" line="14"/>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="thirdwindow.ui" line="27"/>
         <source>Volver principal</source>
         <translation type="unfinished"></translation>
     </message>

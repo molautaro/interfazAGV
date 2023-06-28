@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include "secondwindow.h"
+#include "thirdwindow.h"
+#include "fourthwindow.h"
+#include "fifthwindow.h"
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
