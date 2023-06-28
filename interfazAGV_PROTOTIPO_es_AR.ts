@@ -43,46 +43,63 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.ui" line="14"/>
+        <location filename="mainwindow.ui" line="20"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="27"/>
-        <location filename="mainwindow.ui" line="40"/>
         <location filename="mainwindow.ui" line="53"/>
-        <source>PushButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="66"/>
-        <source>XD</source>
+        <source>Seleccione la estación de destino</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="79"/>
-        <source>mate</source>
+        <source>Estacion 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="92"/>
-        <source>bien </source>
+        <location filename="mainwindow.ui" line="91"/>
+        <source>Estacion 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="105"/>
-        <location filename="mainwindow.ui" line="118"/>
-        <source>a</source>
+        <location filename="mainwindow.ui" line="103"/>
+        <source>Estacion 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="119"/>
+        <source>Estacion 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="131"/>
-        <source>OLA</source>
+        <source>Estacion 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="144"/>
-        <source>todo</source>
+        <location filename="mainwindow.ui" line="143"/>
+        <source>Estacion 7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="161"/>
+        <source>window2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="174"/>
+        <source>window3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="187"/>
+        <source>window4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="200"/>
+        <source>window5</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
