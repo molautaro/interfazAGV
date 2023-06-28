@@ -19,6 +19,18 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        secondwindow.h
+        secondwindow.cpp
+        secondwindow.ui
+        thirdwindow.h
+        thirdwindow.cpp
+        thirdwindow.ui
+        fourthwindow.h
+        fourthwindow.cpp
+        fourthwindow.ui
+        fifthwindow.h
+        fifthwindow.cpp
+        fifthwindow.ui
         ${TS_FILES}
 )
 
