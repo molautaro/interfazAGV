@@ -21,6 +21,7 @@ public slots: // Agrega esta sección
 
 
 private slots:
+
     void on_BotonEst2_pressed();
 
     void on_BotonEst3_pressed();

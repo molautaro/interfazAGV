@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>600</height>
+    <width>1026</width>
+    <height>603</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -19,18 +19,21 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>9</x>
+      <x>0</x>
       <y>0</y>
-      <width>1011</width>
-      <height>571</height>
+      <width>1206</width>
+      <height>603</height>
      </rect>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(194, 252, 255);</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -75,21 +78,15 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>28</x>
-        <y>125</y>
-        <width>951</width>
-        <height>421</height>
+        <x>110</x>
+        <y>10</y>
+        <width>851</width>
+        <height>591</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
          <item>
           <widget class="QPushButton" name="BotonEst2">
            <property name="enabled">
@@ -137,11 +134,8 @@
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_13">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>100</height>
-            </size>
+           <property name="enabled">
+            <bool>true</bool>
            </property>
            <property name="font">
             <font>
@@ -159,12 +153,6 @@
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QPushButton" name="pushButton_10">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>100</height>
-            </size>
-           </property>
            <property name="font">
             <font>
              <pointsize>26</pointsize>
@@ -398,12 +386,6 @@ color: rgb(0, 0, 0);</string>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_14">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>100</height>
-            </size>
-           </property>
            <property name="font">
             <font>
              <pointsize>26</pointsize>
@@ -420,7 +402,22 @@ color: rgb(0, 0, 0);</string>
      </widget>
     </widget>
     <widget class="QWidget" name="page_2">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushButton_8">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>190</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_3">
+     <widget class="QPushButton" name="pushButton_5">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -555,17 +552,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </widget>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1024</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
