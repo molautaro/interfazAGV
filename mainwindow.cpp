@@ -18,36 +18,45 @@ MainWindow::~MainWindow()
 }
 
 
-
-
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_pushButton_9_pressed()
 {
-    SecondWindow *secondWindow = new SecondWindow(this);
-    secondWindow->show();
-    this->hide();
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_pushButton_11_pressed()
 {
-    ThirdWindow *thirdWindow = new ThirdWindow(this);
-    thirdWindow->show();
-    this->hide();
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_pushButton_13_pressed()
 {
-    FourthWindow *fourthWindow = new FourthWindow(this);
-    fourthWindow->show();
-    this->hide();
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
 
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_pushButton_10_pressed()
 {
-    FifthWindow *fifthWindow = new FifthWindow(this);
-    fifthWindow->show();
-    this->hide();
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+void MainWindow::on_pushButton_12_pressed()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+void MainWindow::on_pushButton_14_pressed()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+void MainWindow::on_pushButton_pressed()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+
 }
 
