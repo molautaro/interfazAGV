@@ -19,6 +19,9 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        confirmacionenvio.cpp
+        confirmacionenvio.h
+        confirmacionenvio.ui
         ${TS_FILES}
 )
 

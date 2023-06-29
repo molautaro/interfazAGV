@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "confirmacionenvio.h"
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,10 +15,34 @@ MainWindow::~MainWindow()
 }
 
 
+void MainWindow::mostrarConfirmacionEnvio() {
+    confirmacionEnvio* ventanaEmergente = new confirmacionEnvio(this);
+    connect(ventanaEmergente, &confirmacionEnvio::botonPresionadoSI, this, &MainWindow::manejarBotonPresionadoSI);
+    connect(ventanaEmergente, &confirmacionEnvio::botonPresionadoNO, this, &MainWindow::manejarBotonPresionadoNO);
+    ventanaEmergente->setAttribute(Qt::WA_DeleteOnClose);
+    ventanaEmergente->setModal(true);
+    ventanaEmergente->show();
+}
+
 void MainWindow::on_BotonEst2_pressed()
 {
+    estacion = "2";
+    mostrarConfirmacionEnvio();
+
+}
+
+void MainWindow::manejarBotonPresionadoSI() //CUANDO TOCA BOTON SI - EN LA VENTANA EMERGENTE
+{
+    // Escribe aquí el código que se debe ejecutar cuando se hace clic en el botón.
     ui->stackedWidget->setCurrentIndex(1);
-    ui->label_2->setText("Viajando a Estacion 2");
+    ui->label_2->setText("Viajando a Estacion " + estacion);
+}
+
+void MainWindow::manejarBotonPresionadoNO() //CUANDO TOCA BOTON NO - EN LA VENTANA EMERGENTE
+{
+    // Escribe aquí el código que se debe ejecutar cuando se hace clic en el botón.
+    ui->stackedWidget->setCurrentIndex(1);
+    ui->label_2->setText("NO ESTOY Viajando a Estacion " + estacion);
 }
 
 

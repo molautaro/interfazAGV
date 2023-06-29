@@ -72,7 +72,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>28</x>
@@ -242,7 +242,7 @@
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="128">
+                <color alpha="255">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
@@ -307,7 +307,7 @@
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="128">
+                <color alpha="255">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
@@ -372,7 +372,7 @@
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="128">
+                <color alpha="255">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>

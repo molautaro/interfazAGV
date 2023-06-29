@@ -82,4 +82,22 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>confirmacionEnvio</name>
+    <message>
+        <location filename="confirmacionenvio.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="confirmacionenvio.ui" line="26"/>
+        <source>SI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="confirmacionenvio.ui" line="39"/>
+        <source>NO</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

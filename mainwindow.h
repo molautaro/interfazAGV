@@ -15,6 +15,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots: // Agrega esta sección
+    void manejarBotonPresionadoSI();
+    void manejarBotonPresionadoNO();
+
+
 private slots:
     void on_BotonEst2_pressed();
 
@@ -34,7 +39,13 @@ private slots:
 
     void on_BotonVuelta_pressed();
 
+    void mostrarConfirmacionEnvio();
+
+
+
 private:
     Ui::MainWindow *ui;
+
+    QString estacion;
 };
 #endif // MAINWINDOW_H
