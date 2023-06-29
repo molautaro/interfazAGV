@@ -16,9 +16,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_9_pressed();
+    void on_BotonEst2_pressed();
 
-    void on_pushButton_11_pressed();
+    void on_BotonEst3_pressed();
 
     void on_pushButton_13_pressed();
 
@@ -29,6 +29,10 @@ private slots:
     void on_pushButton_14_pressed();
 
     void on_pushButton_pressed();
+
+    void on_pushButton_2_pressed();
+
+    void on_BotonVuelta_pressed();
 
 private:
     Ui::MainWindow *ui;

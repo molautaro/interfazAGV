@@ -14,14 +14,14 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_pushButton_9_pressed()
+void MainWindow::on_BotonEst2_pressed()
 {
     ui->stackedWidget->setCurrentIndex(1);
     ui->label_2->setText("Viajando a Estacion 2");
 }
 
 
-void MainWindow::on_pushButton_11_pressed()
+void MainWindow::on_BotonEst3_pressed()
 {
     ui->stackedWidget->setCurrentIndex(1);
     ui->label_2->setText("Viajando a Estacion 3");
@@ -60,3 +60,16 @@ void MainWindow::on_pushButton_pressed()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
+
+void MainWindow::on_pushButton_2_pressed()
+{
+   ui->stackedWidget->setCurrentIndex(2);
+}
+
+
+void MainWindow::on_BotonVuelta_pressed()
+{
+   ui->stackedWidget->setCurrentIndex(1);
+   ui->label_2->setText("Volviendo a Estacion 1");
+}
+
