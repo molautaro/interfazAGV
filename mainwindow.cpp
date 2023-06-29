@@ -99,3 +99,9 @@ void MainWindow::on_BotonVuelta_pressed()
    ui->label_2->setText("Volviendo a Estacion 1");
 }
 
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
