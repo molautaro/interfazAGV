@@ -33,7 +33,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(194, 252, 255);</string>
+     <string notr="true">background-color: rgb(240, 240, 240);</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -402,22 +402,7 @@ color: rgb(0, 0, 0);</string>
      </widget>
     </widget>
     <widget class="QWidget" name="page_2">
-     <widget class="QPushButton" name="pushButton_8">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>190</y>
-        <width>80</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="page_3">
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
         <x>10</x>

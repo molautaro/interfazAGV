@@ -99,3 +99,5 @@ void MainWindow::on_BotonVuelta_pressed()
    ui->label_2->setText("Volviendo a Estacion 1");
 }
 
+
+
