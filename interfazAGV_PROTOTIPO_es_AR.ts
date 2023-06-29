@@ -39,13 +39,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="69"/>
-        <source>Seleccione la estación de destino</source>
+        <location filename="mainwindow.ui" line="230"/>
+        <source>Volver a anterior</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="230"/>
-        <source>PushButton</source>
+        <location filename="mainwindow.ui" line="248"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="69"/>
+        <source>Seleccione la estación de destino</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
