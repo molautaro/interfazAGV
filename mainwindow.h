@@ -22,35 +22,43 @@ public slots: // Agrega esta sección
 
 private slots:
 
-    void on_BotonEst2_pressed();
+    void on_BotonEst2_released();
 
-    void on_BotonEst3_pressed();
+    void on_BotonEst3_released();
 
-    void on_pushButton_13_pressed();
+    void on_BotonEst4_released();
 
-    void on_pushButton_10_pressed();
+    void on_BotonEst5_released();
 
-    void on_pushButton_12_pressed();
+    void on_BotonEst6_released();
 
-    void on_pushButton_14_pressed();
+    void on_BotonEst7_released();
 
-    void on_pushButton_pressed();
+    void on_pushButton_released();
 
-    void on_pushButton_2_pressed();
+    void on_pushButton_2_released();
 
-    void on_BotonVuelta_pressed();
+    void on_BotonVuelta_released();
 
     void mostrarConfirmacionEnvio();
 
+    void on_BotonVerEst_released();
 
+    void on_BotonVolvInicSens_released();
 
-    void on_pushButton_5_clicked();
+    void on_BotonVerSens_released();
 
-    void on_pushButton_clicked();
+    void on_BotonSalirEst_released();
 
 private:
     Ui::MainWindow *ui;
 
     QString estacion;
+
+    #define pantallaInicial 0
+    #define pantallaSelecEst 1
+    #define pantallaSens 2
+    #define pantallaViaje 3
+    #define pantallaDest 4
 };
 #endif // MAINWINDOW_H

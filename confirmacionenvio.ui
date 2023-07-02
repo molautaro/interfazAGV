@@ -28,6 +28,12 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0, 0, 0);
+border: 2px solid;
+border-radius: 10px;
+</string>
+   </property>
    <property name="text">
     <string>Confirmar</string>
    </property>
@@ -48,8 +54,10 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(240, 240, 240);
-color: rgb(0, 0, 0);
+    <string notr="true">color: rgb(0, 0, 0);
+border: 2px solid;
+border-radius: 10px;
+
 </string>
    </property>
    <property name="text">
@@ -72,7 +80,11 @@ color: rgb(0, 0, 0);
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(240, 240, 240);</string>
+border: 4px solid;
+border-radius: 10px;
+border-color: rgb(0, 0, 255);
+
+</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::WinPanel</enum>

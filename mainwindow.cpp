@@ -24,7 +24,7 @@ void MainWindow::mostrarConfirmacionEnvio() {
     ventanaEmergente->show();
 }
 
-void MainWindow::on_BotonEst2_pressed()
+void MainWindow::on_BotonEst2_released()
 {
     estacion = "2";
     mostrarConfirmacionEnvio();
@@ -34,7 +34,7 @@ void MainWindow::on_BotonEst2_pressed()
 void MainWindow::manejarBotonPresionadoSI() //CUANDO TOCA BOTON SI - EN LA VENTANA EMERGENTE
 {
     // Escribe aquí el código que se debe ejecutar cuando se hace clic en el botón.
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(pantallaViaje);
     ui->label_2->setText("Viajando a Estacion " + estacion);
 }
 
@@ -46,58 +46,82 @@ void MainWindow::manejarBotonPresionadoNO() //CUANDO TOCA BOTON NO - EN LA VENTA
 }
 
 
-void MainWindow::on_BotonEst3_pressed()
+void MainWindow::on_BotonEst3_released()
 {
     estacion = "3";
     mostrarConfirmacionEnvio();
 }
 
 
-void MainWindow::on_pushButton_13_pressed()
+void MainWindow::on_BotonEst4_released()
 {
     estacion = "4";
     mostrarConfirmacionEnvio();
 }
 
 
-void MainWindow::on_pushButton_10_pressed()
+void MainWindow::on_BotonEst5_released()
 {
     estacion = "5";
     mostrarConfirmacionEnvio();
 }
 
 
-void MainWindow::on_pushButton_12_pressed()
+void MainWindow::on_BotonEst6_released()
 {
     estacion = "6";
     mostrarConfirmacionEnvio();
 }
 
 
-void MainWindow::on_pushButton_14_pressed()
+void MainWindow::on_BotonEst7_released()
 {
     estacion = "7";
     mostrarConfirmacionEnvio();
 }
 
 
-void MainWindow::on_pushButton_pressed()
+void MainWindow::on_pushButton_released()
 {
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(pantallaSelecEst);
 
 }
 
-void MainWindow::on_pushButton_2_pressed()
+void MainWindow::on_pushButton_2_released()
 {
-   ui->stackedWidget->setCurrentIndex(2);
+   ui->stackedWidget->setCurrentIndex(pantallaDest);
 }
 
 
-void MainWindow::on_BotonVuelta_pressed()
+void MainWindow::on_BotonVuelta_released()
 {
-   ui->stackedWidget->setCurrentIndex(1);
+   ui->stackedWidget->setCurrentIndex(pantallaSelecEst);
    ui->label_2->setText("Volviendo a Estacion 1");
 }
 
 
+
+
+void MainWindow::on_BotonVerEst_released()
+{
+    ui->stackedWidget->setCurrentIndex(pantallaSelecEst);
+}
+
+
+void MainWindow::on_BotonVolvInicSens_released()
+{
+    ui->stackedWidget->setCurrentIndex(pantallaInicial);
+}
+
+
+void MainWindow::on_BotonVerSens_released()
+{
+    ui->stackedWidget->setCurrentIndex(pantallaSens);
+}
+
+
+void MainWindow::on_BotonSalirEst_released()
+{
+    ui->stackedWidget->setCurrentIndex(pantallaInicial);
+}
 
