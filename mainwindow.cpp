@@ -41,43 +41,43 @@ void MainWindow::manejarBotonPresionadoSI() //CUANDO TOCA BOTON SI - EN LA VENTA
 void MainWindow::manejarBotonPresionadoNO() //CUANDO TOCA BOTON NO - EN LA VENTANA EMERGENTE
 {
     // Escribe aquí el código que se debe ejecutar cuando se hace clic en el botón.
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->label_2->setText("NO ESTOY Viajando a Estacion " + estacion);
+    //ui->stackedWidget->setCurrentIndex(1);
+    //ui->label_2->setText("NO ESTOY Viajando a Estacion " + estacion);
 }
 
 
 void MainWindow::on_BotonEst3_pressed()
 {
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->label_2->setText("Viajando a Estacion 3");
+    estacion = "3";
+    mostrarConfirmacionEnvio();
 }
 
 
 void MainWindow::on_pushButton_13_pressed()
 {
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->label_2->setText("Viajando a Estacion 4");
+    estacion = "4";
+    mostrarConfirmacionEnvio();
 }
 
 
 void MainWindow::on_pushButton_10_pressed()
 {
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->label_2->setText("Viajando a Estacion 5");
+    estacion = "5";
+    mostrarConfirmacionEnvio();
 }
 
 
 void MainWindow::on_pushButton_12_pressed()
 {
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->label_2->setText("Viajando a Estacion 6");
+    estacion = "6";
+    mostrarConfirmacionEnvio();
 }
 
 
 void MainWindow::on_pushButton_14_pressed()
 {
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->label_2->setText("Viajando a Estacion 7");
+    estacion = "7";
+    mostrarConfirmacionEnvio();
 }
 
 
