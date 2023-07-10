@@ -95,7 +95,7 @@ void MainWindow::on_pushButton_2_released()
 
 void MainWindow::on_BotonVuelta_released()
 {
-   ui->stackedWidget->setCurrentIndex(pantallaSelecEst);
+   ui->stackedWidget->setCurrentIndex(pantallaViaje);
    ui->label_2->setText("Volviendo a Estacion 1");
 }
 

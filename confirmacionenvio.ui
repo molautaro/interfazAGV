@@ -29,10 +29,20 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);
-border: 2px solid;
-border-radius: 10px;
-</string>
+    <string notr="true">QPushButton {
+		
+	background-color: rgb(30, 211, 26);
+	   color: rgb(0, 0, 0);   
+       border: 2px solid rgb(64, 64, 64);
+       border-radius: 10px;
+    }
+
+    QPushButton:pressed {
+	color: rgb(255, 255, 255);
+	
+	
+	background-color: rgb(21, 144, 29);
+    }</string>
    </property>
    <property name="text">
     <string>Confirmar</string>
@@ -54,11 +64,17 @@ border-radius: 10px;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);
-border: 2px solid;
-border-radius: 10px;
+    <string notr="true">QPushButton {
+	background-color: rgb(220, 0, 0);
+	   color: rgb(0, 0, 0);   
+       border: 2px solid rgb(64, 64, 64);
+       border-radius: 5px;
+    }
 
-</string>
+    QPushButton:pressed {
+	color: rgb(255, 255, 255);
+	background-color: rgb(122, 0, 0);
+    }</string>
    </property>
    <property name="text">
     <string>Cancelar</string>
