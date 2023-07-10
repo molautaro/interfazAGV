@@ -50,6 +50,10 @@ private slots:
 
     void on_BotonSalirEst_released();
 
+    void on_spinBox_valueChanged(int arg1);
+
+    void on_pushButton_3_pressed();
+
 private:
     Ui::MainWindow *ui;
 

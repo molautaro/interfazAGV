@@ -125,3 +125,15 @@ void MainWindow::on_BotonSalirEst_released()
     ui->stackedWidget->setCurrentIndex(pantallaInicial);
 }
 
+
+void MainWindow::on_spinBox_valueChanged(int arg1)
+{
+    ui->barraIZQ->setValue(arg1);
+}
+
+
+void MainWindow::on_pushButton_3_pressed()
+{
+    ui->codRFID->setPlainText("XD");
+}
+
