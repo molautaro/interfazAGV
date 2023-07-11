@@ -1,12 +1,57 @@
 #include "mainwindow.h"
 #include "confirmacionenvio.h"
 #include "./ui_mainwindow.h"
+#include <QGraphicsView>
+#include <QGraphicsEllipseItem>
+#include <QGraphicsLineItem>
+#include <cmath>
+#include <QVBoxLayout>
+#include <QTime>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QTime time = QTime::currentTime();
+    qsrand((uint)time.msec());
+
+    // Acceder a la vista y la escena de la interfaz de usuario
+    //QGraphicsViewview = ui->graphicsView;
+    QGraphicsScene *scene = new QGraphicsScene(this);
+    ui->graphicsView->setScene(scene);
+
+
+    // Configurar vista
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
+
+    // Configurar escena
+    scene->setSceneRect(-100, -100, 200, 200);
+    //scene->setSceneRect(-ui->graphicsView->width()/2, -ui->graphicsView->height()/2, ui->graphicsView->width(), ui->graphicsView->height());
+
+    // Crear puntos de datos (en coordenadas polares)
+    QVector<QPointF> points;
+    for (int i = 0; i < 10; ++i) {
+        // Generar un radio y un ángulo aleatorios
+        double radius = (qrand() % 100) / 100.0; // Número aleatorio entre 0 y 1
+        double angle = (qrand() % 360) * M_PI / 180.0; // Ángulo aleatorio entre 0 y 2π radianes
+        points << QPointF(radius * std::cos(angle), radius * std::sin(angle));
+    }
+
+    // Convertir puntos a coordenadas cartesianas y dibujar
+    for (const QPointF &point : points) {
+        qreal x = point.x() * (ui->graphicsView->width()/2);
+        qreal y = -point.y() * (ui->graphicsView->height()/2);
+        //scene->addEllipse(x - 2, y - 2, 4, 4, QPen(), QBrush(Qt::SolidPattern));
+        scene->addEllipse(x, y, 7, 7, QPen(), QBrush(Qt::red,Qt::SolidPattern));
+    }
+
+    // Dibujar lineas de referencia
+    for (int i = 0; i < 360; i += 45) {
+        qreal x = std::cos(i * M_PI / 180.0) * (ui->graphicsView->width());
+        qreal y = -std::sin(i * M_PI / 180.0) * (ui->graphicsView->height());
+        scene->addLine(0, 0, x, y);
+    }
 }
 
 MainWindow::~MainWindow()

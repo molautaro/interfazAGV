@@ -728,13 +728,16 @@ color: rgb(0, 0, 0);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>280</y>
+        <y>240</y>
         <width>411</width>
-        <height>311</height>
+        <height>341</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(145, 145, 145);</string>
+       <string notr="true">background-color: rgb(163, 163, 163);
+border: 2px solid;
+border-radius: 7px;
+border-color: rgb(0, 0, 0);</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -758,7 +761,9 @@ color: rgb(0, 0, 0);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string notr="true">color: rgb(0, 0, 0);
+border: 0px solid;
+</string>
        </property>
        <property name="text">
         <string>Sensor Magnético</string>
@@ -770,7 +775,7 @@ color: rgb(0, 0, 0);</string>
          <x>0</x>
          <y>50</y>
          <width>411</width>
-         <height>221</height>
+         <height>201</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -781,6 +786,12 @@ color: rgb(0, 0, 0);</string>
             <width>100</width>
             <height>0</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);
+border: 0px solid;
+border-radius: 4px;
+background-color: rgb(255, 255, 255);</string>
           </property>
           <property name="value">
            <number>24</number>
@@ -798,6 +809,12 @@ color: rgb(0, 0, 0);</string>
             <height>0</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);
+border: 0px solid;
+background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+          </property>
           <property name="value">
            <number>24</number>
           </property>
@@ -814,6 +831,12 @@ color: rgb(0, 0, 0);</string>
             <height>0</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);
+border: 0px solid;
+background-color: rgb(255, 255, 255);
+border-radius: 4px;</string>
+          </property>
           <property name="value">
            <number>24</number>
           </property>
@@ -827,8 +850,8 @@ color: rgb(0, 0, 0);</string>
       <widget class="QLabel" name="label_7">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>270</y>
+         <x>20</x>
+         <y>250</y>
          <width>111</width>
          <height>31</height>
         </rect>
@@ -840,7 +863,9 @@ color: rgb(0, 0, 0);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string notr="true">color: rgb(0, 0, 0);
+border: 0px solid;
+</string>
        </property>
        <property name="text">
         <string>IZQUIERDA</string>
@@ -850,7 +875,7 @@ color: rgb(0, 0, 0);</string>
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>270</y>
+         <y>250</y>
          <width>81</width>
          <height>31</height>
         </rect>
@@ -862,7 +887,8 @@ color: rgb(0, 0, 0);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string notr="true">color: rgb(0, 0, 0);
+border: 0px solid;</string>
        </property>
        <property name="text">
         <string>CENTRO</string>
@@ -872,8 +898,8 @@ color: rgb(0, 0, 0);</string>
        <property name="geometry">
         <rect>
          <x>290</x>
-         <y>270</y>
-         <width>111</width>
+         <y>250</y>
+         <width>91</width>
          <height>31</height>
         </rect>
        </property>
@@ -884,7 +910,8 @@ color: rgb(0, 0, 0);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string notr="true">color: rgb(0, 0, 0);
+border: 0px solid;</string>
        </property>
        <property name="text">
         <string>DERECHA</string>
@@ -900,18 +927,81 @@ color: rgb(0, 0, 0);</string>
         </rect>
        </property>
       </widget>
+      <widget class="QLabel" name="valorIZQ">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>290</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid;
+background-color: rgb(255, 255, 255);
+border-radius: 7px;
+border-color: rgb(0, 0, 255);
+color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="valorCENT">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>290</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid;
+background-color: rgb(255, 255, 255);
+border-radius: 7px;
+border-color: rgb(0, 0, 255);
+color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="valorDER">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>290</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid;
+background-color: rgb(255, 255, 255);
+border-radius: 7px;
+border-color: rgb(0, 0, 255);
+color: rgb(0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
-        <x>9</x>
-        <y>110</y>
+        <x>10</x>
+        <y>100</y>
         <width>411</width>
-        <height>161</height>
+        <height>131</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(171, 171, 171);</string>
+       <string notr="true">background-color: rgb(163, 163, 163);
+border: 2px solid;
+border-radius: 7px;
+border-color: rgb(0, 0, 0);</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -923,8 +1013,121 @@ color: rgb(0, 0, 0);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
+         <y>10</y>
+         <width>151</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);
+border: 0px solid;
+</string>
+       </property>
+       <property name="text">
+        <string>Sensor RFID</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="codRFID">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>181</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid;
+border-radius: 7px;
+border-color: rgb(0, 0, 0);
+</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="tradRFID">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>40</y>
+         <width>181</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid;
+border-radius: 7px;
+border-color: rgb(0, 0, 0);
+</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
          <y>0</y>
-         <width>131</width>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGraphicsView" name="graphicsView">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>160</y>
+        <width>400</width>
+        <height>370</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid;
+border-radius: 7px;
+border-color: rgb(0, 0, 255);
+</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_3">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>100</y>
+        <width>521</width>
+        <height>481</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(163, 163, 163);
+border: 2px solid;
+border-radius: 7px;
+border-color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>181</width>
          <height>31</height>
         </rect>
        </property>
@@ -935,52 +1138,21 @@ color: rgb(0, 0, 0);</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
+        <string notr="true">color: rgb(0, 0, 0);
+border: 0px solid;
+</string>
        </property>
        <property name="text">
-        <string>Sensor RFID</string>
-       </property>
-      </widget>
-      <widget class="QTextEdit" name="codRFID">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>181</width>
-         <height>111</height>
-        </rect>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QTextEdit" name="tradRFID">
-       <property name="geometry">
-        <rect>
-         <x>210</x>
-         <y>30</y>
-         <width>181</width>
-         <height>111</height>
-        </rect>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
+        <string>Sensor LIDAR</string>
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>110</y>
-        <width>111</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
+     <zorder>frame_3</zorder>
+     <zorder>label_5</zorder>
+     <zorder>BotonVolvInicSens</zorder>
+     <zorder>frame</zorder>
+     <zorder>frame_2</zorder>
+     <zorder>graphicsView</zorder>
     </widget>
     <widget class="QWidget" name="page_2">
      <widget class="QPushButton" name="pushButton">
