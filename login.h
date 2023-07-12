@@ -1,13 +1,13 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
 class login;
 }
 
-class login : public QWidget
+class login : public QDialog
 {
     Q_OBJECT
 

@@ -42,6 +42,8 @@ private slots:
 
     void mostrarConfirmacionEnvio();
 
+    void mostrarLogin();
+
     void on_BotonVerEst_released();
 
     void on_BotonVolvInicSens_released();

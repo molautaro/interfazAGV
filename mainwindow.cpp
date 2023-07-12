@@ -70,6 +70,15 @@ void MainWindow::mostrarConfirmacionEnvio() {
     ventanaEmergente->show();
 }
 
+void MainWindow::mostrarLogin(){
+    login* loginVentanaEmergente = new login(this);
+    //connect(loginVentanaEmergente, &confirmacionEnvio::botonPresionadoSI, this, &MainWindow::manejarBotonPresionadoSI);
+    //connect(loginVentanaEmergente, &confirmacionEnvio::botonPresionadoNO, this, &MainWindow::manejarBotonPresionadoNO);
+    loginVentanaEmergente->setAttribute(Qt::WA_DeleteOnClose);
+    loginVentanaEmergente->setModal(true);
+    loginVentanaEmergente->show();
+}
+
 void MainWindow::on_BotonEst2_released()
 {
     estacion = "2";
@@ -151,6 +160,7 @@ void MainWindow::on_BotonVuelta_released()
 void MainWindow::on_BotonVerEst_released()
 {
     ui->stackedWidget->setCurrentIndex(pantallaSelecEst);
+    mostrarLogin();
 }
 
 
@@ -163,6 +173,7 @@ void MainWindow::on_BotonVolvInicSens_released()
 void MainWindow::on_BotonVerSens_released()
 {
     ui->stackedWidget->setCurrentIndex(pantallaSens);
+    mostrarLogin();
 }
 
 
