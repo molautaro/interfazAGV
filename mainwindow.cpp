@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "confirmacionenvio.h"
+#include "login.h"
 #include "./ui_mainwindow.h"
 #include <QGraphicsView>
 #include <QGraphicsEllipseItem>

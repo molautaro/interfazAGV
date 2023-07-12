@@ -427,7 +427,7 @@ border-color: rgb(0, 0, 255);</string>
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="128">
+                <color alpha="255">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
@@ -492,7 +492,7 @@ border-color: rgb(0, 0, 255);</string>
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="128">
+                <color alpha="255">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
@@ -557,7 +557,7 @@ border-color: rgb(0, 0, 255);</string>
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="128">
+                <color alpha="255">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
@@ -769,16 +769,22 @@ border: 0px solid;
         <string>Sensor Magnético</string>
        </property>
       </widget>
-      <widget class="QWidget" name="horizontalLayoutWidget">
+      <widget class="QFrame" name="horizontalFrame">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>10</x>
          <y>50</y>
-         <width>411</width>
+         <width>391</width>
          <height>201</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border: 0px solid;</string>
+       </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
         <item>
          <widget class="QProgressBar" name="barraIZQ">
           <property name="minimumSize">

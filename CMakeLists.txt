@@ -22,6 +22,9 @@ set(PROJECT_SOURCES
         confirmacionenvio.cpp
         confirmacionenvio.h
         confirmacionenvio.ui
+        login.h
+        login.cpp
+        login.ui
         ${TS_FILES}
 )
 
