@@ -212,5 +212,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="login.ui" line="153"/>
+        <source>PushButton</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
