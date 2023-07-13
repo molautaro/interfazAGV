@@ -58,11 +58,18 @@ private slots:
 
     void on_pushButton_3_pressed();
 
+    bool checkPermission(const QString &action);
+
+    void on_pushButton_4_pressed();
+
+    void on_BotonVerEst_pressed();
+
 private:
     Ui::MainWindow *ui;
     login *loginVentanaEmergente;
+    User *user1;
     QString estacion;
-
+    bool iniciosesion=0;
     #define pantallaInicial 0
     #define pantallaSelecEst 1
     #define pantallaSens 2

@@ -15,8 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    loginVentanaEmergente = new login(this);
-    connect(loginVentanaEmergente, &login::userLoggedIn, this, &MainWindow::handleUserLoggedIn);
+
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
 
@@ -74,6 +73,8 @@ void MainWindow::mostrarConfirmacionEnvio() {
 }
 
 void MainWindow::mostrarLogin(){
+    loginVentanaEmergente = new login(this);
+    connect(loginVentanaEmergente, &login::userLoggedIn, this, &MainWindow::handleUserLoggedIn);
     loginVentanaEmergente->setAttribute(Qt::WA_DeleteOnClose);
     loginVentanaEmergente->setModal(true);
     loginVentanaEmergente->show();
@@ -91,6 +92,8 @@ void MainWindow::handleUserLoggedIn(User* user) //CUANDO TOCA BOTON SI - EN LA V
     // Escribe aquí el código que se debe ejecutar cuando se hace clic en el botón.
     ui->label_11->setText(user->getUsername());
     ui->label_12->setText(user->getRole());
+    user1=user;
+    iniciosesion=1;
 
 }
 
@@ -167,7 +170,10 @@ void MainWindow::on_BotonVuelta_released()
 
 void MainWindow::on_BotonVerEst_released()
 {
-    ui->stackedWidget->setCurrentIndex(pantallaSelecEst);
+    if(iniciosesion){
+        ui->stackedWidget->setCurrentIndex(pantallaSelecEst);
+    }
+
     mostrarLogin();
 }
 
@@ -180,8 +186,13 @@ void MainWindow::on_BotonVolvInicSens_released()
 
 void MainWindow::on_BotonVerSens_released()
 {
-    ui->stackedWidget->setCurrentIndex(pantallaSens);
-    mostrarLogin();
+    if(iniciosesion){
+        if(checkPermission("Ver Sensores")){
+            ui->stackedWidget->setCurrentIndex(pantallaSens);
+        }
+    }else{
+        mostrarLogin();
+    }
 
 }
 
@@ -201,5 +212,20 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
 void MainWindow::on_pushButton_3_pressed()
 {
     ui->codRFID->setPlainText("XD");
+}
+
+bool MainWindow::checkPermission(const QString &action) {
+            if (user1->getUsername() == "admin") {
+                if (action == "Ver Sensores") {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+void MainWindow::on_pushButton_4_pressed()
+{
+    mostrarLogin();
 }
 
