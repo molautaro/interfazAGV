@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "login.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,6 +19,7 @@ public:
 public slots: // Agrega esta sección
     void manejarBotonPresionadoSI();
     void manejarBotonPresionadoNO();
+    void handleUserLoggedIn(User* user);;
 
 
 private slots:
@@ -58,7 +60,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
+    login *loginVentanaEmergente;
     QString estacion;
 
     #define pantallaInicial 0

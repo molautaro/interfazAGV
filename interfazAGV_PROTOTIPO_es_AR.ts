@@ -102,7 +102,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1174"/>
+        <location filename="mainwindow.ui" line="1200"/>
         <source>Volver a anterior</source>
         <translation type="unfinished"></translation>
     </message>
@@ -110,22 +110,24 @@
         <location filename="mainwindow.ui" line="953"/>
         <location filename="mainwindow.ui" line="973"/>
         <location filename="mainwindow.ui" line="993"/>
-        <location filename="mainwindow.ui" line="1209"/>
+        <location filename="mainwindow.ui" line="1165"/>
+        <location filename="mainwindow.ui" line="1178"/>
+        <location filename="mainwindow.ui" line="1235"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1225"/>
+        <location filename="mainwindow.ui" line="1251"/>
         <source>Sig</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1260"/>
+        <location filename="mainwindow.ui" line="1286"/>
         <source>Estacion destino alcanzada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1293"/>
+        <location filename="mainwindow.ui" line="1319"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -147,7 +149,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1335"/>
+        <location filename="mainwindow.ui" line="1361"/>
         <source>Listo</source>
         <translation type="unfinished"></translation>
     </message>
@@ -215,6 +217,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <message>
         <location filename="login.ui" line="153"/>
         <source>PushButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="login.ui" line="167"/>
+        <source>admin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="login.ui" line="172"/>
+        <source>user</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "confirmacionenvio.h"
 #include "login.h"
+#include "user.h"
 #include "./ui_mainwindow.h"
 #include <QGraphicsView>
 #include <QGraphicsEllipseItem>
@@ -14,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    loginVentanaEmergente = new login(this);
+    connect(loginVentanaEmergente, &login::userLoggedIn, this, &MainWindow::handleUserLoggedIn);
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
 
@@ -71,9 +74,6 @@ void MainWindow::mostrarConfirmacionEnvio() {
 }
 
 void MainWindow::mostrarLogin(){
-    login* loginVentanaEmergente = new login(this);
-    //connect(loginVentanaEmergente, &confirmacionEnvio::botonPresionadoSI, this, &MainWindow::manejarBotonPresionadoSI);
-    //connect(loginVentanaEmergente, &confirmacionEnvio::botonPresionadoNO, this, &MainWindow::manejarBotonPresionadoNO);
     loginVentanaEmergente->setAttribute(Qt::WA_DeleteOnClose);
     loginVentanaEmergente->setModal(true);
     loginVentanaEmergente->show();
@@ -83,6 +83,14 @@ void MainWindow::on_BotonEst2_released()
 {
     estacion = "2";
     mostrarConfirmacionEnvio();
+
+}
+
+void MainWindow::handleUserLoggedIn(User* user) //CUANDO TOCA BOTON SI - EN LA VENTANA EMERGENTE
+{
+    // Escribe aquí el código que se debe ejecutar cuando se hace clic en el botón.
+    ui->label_11->setText(user->getUsername());
+    ui->label_12->setText(user->getRole());
 
 }
 
@@ -174,6 +182,7 @@ void MainWindow::on_BotonVerSens_released()
 {
     ui->stackedWidget->setCurrentIndex(pantallaSens);
     mostrarLogin();
+
 }
 
 

@@ -4,6 +4,10 @@
 #include <QFile>
 #include <QTextStream>
 #include <QCryptographicHash>
+#include "user.h"
+
+
+
 login::login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::login)
@@ -20,7 +24,7 @@ void login::on_botonLOGIN_pressed()
 {
     QString username = ui->lineUSER->text();
     QString password = ui->lineCONTRA->text();
-
+    QString role;
     // Genera el hash de la contraseña ingresada
     QByteArray passwordData = password.toUtf8();
     QByteArray hashedPassword = QCryptographicHash::hash(passwordData, QCryptographicHash::Sha256);
@@ -45,10 +49,11 @@ void login::on_botonLOGIN_pressed()
     while (!in.atEnd()) {
         QString line = in.readLine();
         QStringList fields = line.split(" ");
-        if (fields.size() < 2)
+        if (fields.size() < 3)
             continue;
-        if (fields[0] == username && QByteArray::fromHex(fields[1].toUtf8()) == hashedPassword) {
+        if (fields[0] == username && QByteArray::fromHex(fields[1].toUtf8()) == hashedPassword ) {
             loginSuccessful = true;
+            role = fields[2];
             break;
         }
     }
@@ -56,6 +61,8 @@ void login::on_botonLOGIN_pressed()
 
     if (loginSuccessful) {
         ui->labelError_log->setText("Login exitoso");
+        User *user = new User(username, role); // Asume que tienes el rol del usuario de alguna manera
+        emit userLoggedIn(user); // Asume que has declarado esta señal en tu clase de login
     } else {
         ui->labelError_log->setText("Usuario o contraseña incorrecto");
         QMessageBox::warning(this, "Login", "Usuario o contraseña incorrecto");
@@ -67,6 +74,7 @@ void login::on_botonREGISTRO_pressed()
 {
     QString username = ui->lineUSER->text();
     QString password = ui->lineCONTRA->text();
+    QString role = ui->comboBox->currentText(); //define el rol
 
     // Comprueba que el nombre de usuario y la contraseña no estén vacíos
     if (username.isEmpty() || password.isEmpty()) {
@@ -96,7 +104,7 @@ void login::on_botonREGISTRO_pressed()
 
     // out << username: Escribe el nombre de usuario en el archivo de texto. out es un objeto QTextStream que se ha vinculado al archivo de texto.
     QTextStream out(&file);
-    out << username << " " << hashedPassword.toHex() << "\n";
+    out << username << " " << hashedPassword.toHex() << " " << role << "\n";
 
     file.close();
 
