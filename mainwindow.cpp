@@ -9,6 +9,7 @@
 #include <cmath>
 #include <QVBoxLayout>
 #include <QTime>
+#include <QTimer>
 #include <qmessagebox.h>
 #include <QFile>
 #include <QTextStream>
@@ -305,7 +306,7 @@ void MainWindow::on_BotonLOGIN_pressed()
 void MainWindow::on_botonREGISTRAR_released()
 {
     if(iniciosesion){
-                if(checkPermission("Registar Usuario")){
+                if(checkPermission("Registrar Usuario")){
                     ui->stackedWidget->setCurrentIndex(pantallaReg);
                 }
     }else{
