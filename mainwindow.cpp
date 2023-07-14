@@ -9,12 +9,27 @@
 #include <cmath>
 #include <QVBoxLayout>
 #include <QTime>
+#include <QTimer>
+#include <QDateTime>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // Inicializar la variable lastInteractionTime
+    lastInteractionTime = QDateTime::currentDateTime();
+    // Conectar eventos de ratón y teclado a los métodos correspondientes
+    installEventFilter(this);
+    ui->graphicsView->viewport()->installEventFilter(this);
+    ui->graphicsView->viewport()->setMouseTracking(true);
+
+
+    logoutTimer = new QTimer(this);
+    connect(logoutTimer, &QTimer::timeout, this, &MainWindow::CerrarSesionInactividad);
+    //logoutTimer->start(180000); // 3 minutos (180000 milisegundos)
+    logoutTimer->start(60000);
 
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
@@ -62,6 +77,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event->type() == QEvent::KeyPress || event->type() == QEvent::MouseMove
+        || event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonRelease) {
+        // Actualizar la variable lastInteractionTime al tiempo actual
+        lastInteractionTime = QDateTime::currentDateTime();
+    }
+
+    // Delegar al evento original
+    return QMainWindow::eventFilter(obj, event);
+}
 
 void MainWindow::mostrarConfirmacionEnvio() {
     confirmacionEnvio* ventanaEmergente = new confirmacionEnvio(this);
@@ -87,14 +113,37 @@ void MainWindow::on_BotonEst2_released()
 
 }
 
-void MainWindow::handleUserLoggedIn(User* user) //CUANDO TOCA BOTON SI - EN LA VENTANA EMERGENTE
+void MainWindow::handleUserLoggedIn(User* user)
 {
     // Escribe aquí el código que se debe ejecutar cuando se hace clic en el botón.
     ui->label_11->setText(user->getUsername());
     ui->label_12->setText(user->getRole());
     user1=user;
     iniciosesion=1;
+    logoutTimer->start(6000);
+}
 
+void MainWindow::CerrarSesionInactividad()
+{
+
+    int elapsedSeconds = lastInteractionTime.secsTo(QDateTime::currentDateTime());
+
+        // Cerrar la sesión si ha pasado más de 3 minutos (180 segundos) de inactividad
+    if (elapsedSeconds > 60) {
+            // Escribe aquí el código para cerrar la sesión
+        iniciosesion = 0;
+        user1 = usergenerico;
+        ui->stackedWidget->setCurrentIndex(pantallaInicial);
+    }
+    else{
+        logoutTimer->start(3000);
+    }
+
+
+    //iniciosesion=0;
+    //user1=usergenerico;
+    //ui->stackedWidget->setCurrentIndex(pantallaInicial);
+    //mostrarLogin();
 }
 
 void MainWindow::manejarBotonPresionadoSI() //CUANDO TOCA BOTON SI - EN LA VENTANA EMERGENTE
@@ -215,7 +264,7 @@ void MainWindow::on_pushButton_3_pressed()
 }
 
 bool MainWindow::checkPermission(const QString &action) {
-            if (user1->getUsername() == "admin") {
+            if (user1->getRole() == "admin") {
                 if (action == "Ver Sensores") {
                     return true;
                 }
