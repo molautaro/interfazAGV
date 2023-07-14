@@ -67,6 +67,8 @@ private slots:
 
     bool eventFilter(QObject *obj, QEvent *event);
 
+    void actualizarLastInteractionTime();
+
 private:
     Ui::MainWindow *ui;
     QDateTime lastInteractionTime;

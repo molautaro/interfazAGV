@@ -26,6 +26,8 @@ set(PROJECT_SOURCES
         login.cpp
         login.ui
         user.h
+        myapplication.h
+        myapplication.cpp
         ${TS_FILES}
 )
 

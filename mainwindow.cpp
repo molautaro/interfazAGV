@@ -79,14 +79,21 @@ MainWindow::~MainWindow()
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    if (event->type() == QEvent::KeyPress || event->type() == QEvent::MouseMove
-        || event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonRelease) {
-        // Actualizar la variable lastInteractionTime al tiempo actual
-        lastInteractionTime = QDateTime::currentDateTime();
+    if (obj == this || obj == ui->graphicsView->viewport()) {
+        if (event->type() == QEvent::KeyPress || event->type() == QEvent::MouseMove
+            || event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonRelease) {
+            // Actualizar la variable lastInteractionTime al tiempo actual
+            lastInteractionTime = QDateTime::currentDateTime();
+        }
     }
 
     // Delegar al evento original
     return QMainWindow::eventFilter(obj, event);
+}
+
+void MainWindow::actualizarLastInteractionTime()
+{
+    lastInteractionTime = QDateTime::currentDateTime();
 }
 
 void MainWindow::mostrarConfirmacionEnvio() {
@@ -94,6 +101,7 @@ void MainWindow::mostrarConfirmacionEnvio() {
     connect(ventanaEmergente, &confirmacionEnvio::botonPresionadoSI, this, &MainWindow::manejarBotonPresionadoSI);
     connect(ventanaEmergente, &confirmacionEnvio::botonPresionadoNO, this, &MainWindow::manejarBotonPresionadoNO);
     ventanaEmergente->setAttribute(Qt::WA_DeleteOnClose);
+    connect(ventanaEmergente, &QDialog::finished, this, &MainWindow::actualizarLastInteractionTime);
     ventanaEmergente->setModal(true);
     ventanaEmergente->show();
 }
@@ -102,6 +110,7 @@ void MainWindow::mostrarLogin(){
     loginVentanaEmergente = new login(this);
     connect(loginVentanaEmergente, &login::userLoggedIn, this, &MainWindow::handleUserLoggedIn);
     loginVentanaEmergente->setAttribute(Qt::WA_DeleteOnClose);
+    connect(loginVentanaEmergente, &QDialog::finished, this, &MainWindow::actualizarLastInteractionTime);
     loginVentanaEmergente->setModal(true);
     loginVentanaEmergente->show();
 }
