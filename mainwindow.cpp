@@ -9,8 +9,10 @@
 #include <cmath>
 #include <QVBoxLayout>
 #include <QTime>
-#include <QTimer>
-#include <QDateTime>
+#include <qmessagebox.h>
+#include <QFile>
+#include <QTextStream>
+#include <QCryptographicHash>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -229,10 +231,12 @@ void MainWindow::on_BotonVuelta_released()
 void MainWindow::on_BotonVerEst_released()
 {
     if(iniciosesion){
-        ui->stackedWidget->setCurrentIndex(pantallaSelecEst);
+        if(checkPermission("Elegir Estacion")){
+            ui->stackedWidget->setCurrentIndex(pantallaSelecEst);
+        }
+    }else{
+        mostrarLogin();
     }
-
-    mostrarLogin();
 }
 
 
@@ -251,7 +255,6 @@ void MainWindow::on_BotonVerSens_released()
     }else{
         mostrarLogin();
     }
-
 }
 
 
@@ -277,13 +280,87 @@ bool MainWindow::checkPermission(const QString &action) {
                 if (action == "Ver Sensores") {
                     return true;
                 }
+                if(action == "Elegir Estacion"){
+                    return true;
+                }
+                if(action == "Registrar Usuario"){
+                    return true;
+                }
+            }
+            if (user1->getRole() == "user") {
+                if(action == "Elegir Estacion"){
+                    return true;
+                }
             }
             return false;
         }
 
 
-void MainWindow::on_pushButton_4_pressed()
+void MainWindow::on_BotonLOGIN_pressed()
 {
     mostrarLogin();
+}
+
+
+void MainWindow::on_botonREGISTRAR_released()
+{
+    if(iniciosesion){
+                if(checkPermission("Registar Usuario")){
+                    ui->stackedWidget->setCurrentIndex(pantallaReg);
+                }
+    }else{
+                mostrarLogin();
+    }
+}
+
+
+void MainWindow::on_botonREGISTRO_released()
+{
+    QString username = ui->lineUSER_REG->text();
+    QString password = ui->lineCONTRA_REG->text();
+    QString role = ui->comboBox->currentText(); //define el rol
+
+    // Comprueba que el nombre de usuario y la contraseña no estén vacíos
+    if (username.isEmpty() || password.isEmpty()) {
+        QMessageBox::warning(this, "Registro", "El nombre de usuario y la contraseña no pueden estar vacíos");
+        return;
+    }
+
+    // Genera el hash de la contraseña ingresada
+    QByteArray passwordData = password.toUtf8();
+    QByteArray hashedPassword = QCryptographicHash::hash(passwordData, QCryptographicHash::Sha256);
+
+    // Abre el archivo de texto que contiene los usuarios
+    QFile file("user_data.txt");
+    if (!file.exists()) {
+        // Si el archivo no existe, crea un nuevo archivo
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QMessageBox::critical(this, "Error", "No se pudo crear el archivo de datos de usuario");
+            return;
+        }
+        file.close();
+    }
+
+    if (!file.open(QIODevice::Append | QIODevice::Text)) {
+        QMessageBox::critical(this, "Error", "No se pudo abrir el archivo de datos de usuario para añadir un nuevo usuario");
+        return;
+    }
+
+    // out << username: Escribe el nombre de usuario en el archivo de texto. out es un objeto QTextStream que se ha vinculado al archivo de texto.
+    QTextStream out(&file);
+    out << username << " " << hashedPassword.toHex() << " " << role << "\n";
+
+    file.close();
+
+    QMessageBox::information(this, "Registro", "Usuario registrado exitosamente");
+
+    ui->lineUSER_REG->clear();
+    ui->lineCONTRA_REG->clear();
+}
+
+
+void MainWindow::on_botonSalirReg_released()
+{
+    ui->stackedWidget->setCurrentIndex(pantallaInicial);
 }
 
