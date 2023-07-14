@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "login.h"
+#include <QDateTime>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -68,10 +69,22 @@ private slots:
 
     void on_botonSalirReg_released();
 
+    void CerrarSesionInactividad();
+
+    bool eventFilter(QObject *obj, QEvent *event);
+
+    void actualizarLastInteractionTime();
+
+    void on_pushButton_5_clicked();
+
+
 private:
     Ui::MainWindow *ui;
+    QDateTime lastInteractionTime;
+    QTimer *logoutTimer;
     login *loginVentanaEmergente;
-    User *user1;
+    User *user1 = new User("user", "user");
+    User *usergenerico = new User("user", "user");
     QString estacion;
     bool iniciosesion=0;
     #define pantallaInicial 0
