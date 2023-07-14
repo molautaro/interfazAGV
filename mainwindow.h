@@ -60,9 +60,13 @@ private slots:
 
     bool checkPermission(const QString &action);
 
-    void on_pushButton_4_pressed();
+    void on_BotonLOGIN_pressed();
 
-    void on_BotonVerEst_pressed();
+    void on_botonREGISTRAR_released();
+
+    void on_botonREGISTRO_released();
+
+    void on_botonSalirReg_released();
 
 private:
     Ui::MainWindow *ui;
@@ -73,7 +77,8 @@ private:
     #define pantallaInicial 0
     #define pantallaSelecEst 1
     #define pantallaSens 2
-    #define pantallaViaje 3
-    #define pantallaDest 4
+    #define pantallaViaje 4
+    #define pantallaDest 5
+    #define pantallaReg 3
 };
 #endif // MAINWINDOW_H

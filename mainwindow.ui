@@ -32,6 +32,12 @@
       <height>601</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>50</width>
+      <height>0</height>
+     </size>
+    </property>
     <property name="font">
      <font>
       <pointsize>20</pointsize>
@@ -42,7 +48,7 @@
      <string notr="true">background-color: rgb(240, 240, 240);</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_4">
      <widget class="QLabel" name="label_4">
@@ -151,18 +157,158 @@ border-color: rgb(0, 0, 255);</string>
        <string>Selección de estación</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="BotonLOGIN">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>490</y>
-        <width>151</width>
-        <height>61</height>
+        <x>210</x>
+        <y>440</y>
+        <width>281</width>
+        <height>71</height>
        </rect>
       </property>
-      <property name="text">
-       <string>PushButton</string>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+		
+	   color: rgb(0, 0, 0);   
+	 
+	background-color: rgb(0, 85, 255);
+       border: 2px solid rgb(64, 64, 64);
+       border-radius: 10px;
+    }
+
+    QPushButton:pressed {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(0, 115, 173);
+    }</string>
+      </property>
+      <property name="text">
+       <string>Inicio de Sesion</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="botonREGISTRAR">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>440</y>
+        <width>281</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+		
+	   color: rgb(0, 0, 0);   
+	 
+	background-color: rgb(0, 85, 255);
+       border: 2px solid rgb(64, 64, 64);
+       border-radius: 10px;
+    }
+
+    QPushButton:pressed {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(0, 115, 173);
+    }</string>
+      </property>
+      <property name="text">
+       <string>Registrar Usuario</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>171</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_20">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string>Rol:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_19">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string>Usuario:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_12">
+         <property name="minimumSize">
+          <size>
+           <width>70</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label_11">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="page">
@@ -440,7 +586,7 @@ border-color: rgb(0, 0, 255);</string>
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
+                <color alpha="128">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
@@ -505,7 +651,7 @@ border-color: rgb(0, 0, 255);</string>
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
+                <color alpha="128">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
@@ -570,7 +716,7 @@ border-color: rgb(0, 0, 255);</string>
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
+                <color alpha="128">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
@@ -647,15 +793,15 @@ border-color: rgb(0, 0, 255);</string>
      <widget class="QPushButton" name="BotonSalirEst">
       <property name="geometry">
        <rect>
-        <x>980</x>
-        <y>560</y>
-        <width>31</width>
-        <height>31</height>
+        <x>970</x>
+        <y>550</y>
+        <width>41</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>12</pointsize>
+        <pointsize>18</pointsize>
         <bold>true</bold>
        </font>
       </property>
@@ -1165,32 +1311,6 @@ border: 0px solid;
         <string>Sensor LIDAR</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_11">
-       <property name="geometry">
-        <rect>
-         <x>320</x>
-         <y>10</y>
-         <width>91</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_12">
-       <property name="geometry">
-        <rect>
-         <x>320</x>
-         <y>40</y>
-         <width>91</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
      </widget>
      <zorder>frame_3</zorder>
      <zorder>label_5</zorder>
@@ -1198,6 +1318,255 @@ border: 0px solid;
      <zorder>frame</zorder>
      <zorder>frame_2</zorder>
      <zorder>graphicsView</zorder>
+    </widget>
+    <widget class="QWidget" name="page_6">
+     <widget class="QPushButton" name="botonREGISTRO">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>490</y>
+        <width>301</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>24</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+		
+	   color: rgb(0, 0, 0);   
+	 
+	background-color: rgb(0, 85, 255);
+       border: 2px solid rgb(64, 64, 64);
+       border-radius: 10px;
+    }
+
+    QPushButton:pressed {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(0, 115, 173);
+    }</string>
+      </property>
+      <property name="text">
+       <string>Registrar</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>350</y>
+        <width>201</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox {
+		
+	   color: rgb(0, 0, 0);   
+	 
+	background-color: rgb(0, 85, 255);
+       border: 2px solid rgb(64, 64, 64);
+       border-radius: 10px;
+    }
+
+    QComboBox:editTextChanged {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(0, 115, 173);
+    }</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>admin</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>user</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLineEdit" name="lineUSER_REG">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>290</y>
+        <width>321</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineCONTRA_REG">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>410</y>
+        <width>321</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>240</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>Usuario</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>971</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 4px solid;
+border-radius: 10px;
+border-color: rgb(0, 0, 255);
+color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;Registro de Usuarios&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>370</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>Contraseña</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>120</y>
+        <width>631</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 4px solid;
+border-radius: 10px;
+border-color: rgb(0, 0, 0);
+color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Ingrese un nombre de usuario y una&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt; contraseña, luego seleccione el rol del usuario y toque &amp;quot;Registrar&amp;quot;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>300</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>Rol</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="botonSalirReg">
+      <property name="geometry">
+       <rect>
+        <x>960</x>
+        <y>540</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+		
+	
+	
+	background-color: rgb(255, 0, 0);
+	   color: rgb(0, 0, 0);   
+       border: 2px solid rgb(64, 64, 64);
+       border-radius: 5px;
+    }
+
+    QPushButton:pressed {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(122, 0, 0);
+    }</string>
+      </property>
+      <property name="text">
+       <string>X</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_2">
      <widget class="QPushButton" name="pushButton">

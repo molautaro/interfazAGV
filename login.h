@@ -23,7 +23,6 @@ signals: // Agrega esta sección
 private slots:
     void on_botonLOGIN_pressed();
 
-    void on_botonREGISTRO_pressed();
 
 private:
     Ui::login *ui;
