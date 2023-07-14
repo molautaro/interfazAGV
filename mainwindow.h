@@ -69,6 +69,8 @@ private slots:
 
     void actualizarLastInteractionTime();
 
+    void on_pushButton_5_clicked();
+
 private:
     Ui::MainWindow *ui;
     QDateTime lastInteractionTime;
