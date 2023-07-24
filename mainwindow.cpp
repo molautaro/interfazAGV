@@ -14,13 +14,23 @@
 #include <QFile>
 #include <QTextStream>
 #include <QCryptographicHash>
+#include <QCoreApplication>
+#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPortInfo>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    serial = new QSerialPort(this);
+        //serial->setPortName("COM4"); // Ajusta el nombre del puerto a tu puerto correcto.
+        serial->setPortName("COM4");
+        serial->setBaudRate(QSerialPort::Baud115200);
+        serial->open(QSerialPort::ReadWrite);
+        serial->setDataTerminalReady(true);
+        connect(serial, &QSerialPort::readyRead, this, &MainWindow::OnQSerialPort1Rx);
     // Inicializar la variable lastInteractionTime
     lastInteractionTime = QDateTime::currentDateTime();
     // Conectar eventos de ratón y teclado a los métodos correspondientes
@@ -79,6 +89,78 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::OnQSerialPort1Rx()
+{
+    static QString mensaje;
+
+    QByteArray data = serial->readAll();
+    if (data.isEmpty()) {
+        return;
+    }
+
+    QString strhex;
+    for (int i = 0; i < data.size(); i++)
+        strhex = strhex + QString("%1").arg(static_cast<quint8>(data[i]), 2, 16, QChar('0')).toUpper();
+
+    mensaje = QString::fromLatin1(data);
+    ui->lineEdit->setText(strhex);
+    ui->label_21->setText(mensaje);
+}
+
+void MainWindow::EnviarComando(uint8_t length, uint8_t cmd, uint8_t payload[])
+{
+    static uint8_t indTX = 0;
+    // Comprobar el desbordamiento del buffer
+    if (indTX + length + 6 > MAX_TX_SIZE)
+    {
+        // Manejar el error de desbordamiento
+        // ...
+        return;
+    }
+
+    TX[indTX++] = 'U';
+    TX[indTX++] = 'N';
+    TX[indTX++] = 'E';
+    TX[indTX++] = 'R';
+    TX[indTX++] = length;
+    TX[indTX++] = 0x00;
+    TX[indTX++] = ':';
+
+    switch (cmd)
+    {
+        case CMD_LED_ON_OFF:
+            TX[indTX++] = CMD_LED_ON_OFF;
+            TX[indTX++] = payload[0];
+            TX[indTX++] = payload[1];
+            break;
+        case CMD_WALL_BOUNCE:
+            TX[indTX++] = CMD_WALL_BOUNCE;
+            TX[indTX++] = payload[0];
+            break;
+        case CMD_ALIVE:
+            TX[indTX++] = CMD_ALIVE;
+            break;
+        default:
+            // Manejar el error de comando no reconocido
+            // ...
+            return;
+    }
+
+    // Calcular el checksum
+    uint8_t cks = 0;
+    for (int i = 0; i < indTX; i++)
+    {
+        cks ^= TX[i];
+    }
+    TX[indTX++] = cks;
+
+    if (serial->isOpen())
+    {
+        serial->write((char*)TX, indTX);
+    }
+}
+
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
@@ -140,12 +222,14 @@ void MainWindow::CerrarSesionInactividad()
 
     int elapsedSeconds = lastInteractionTime.secsTo(QDateTime::currentDateTime());
 
-        // Cerrar la sesión si ha pasado más de 3 minutos (180 segundos) de inactividad
+    // Cerrar la sesión si ha pasado más de 3 minutos (180 segundos) de inactividad
     if (elapsedSeconds > 60) {
-            // Escribe aquí el código para cerrar la sesión
+        // Escribe aquí el código para cerrar la sesión
         iniciosesion = 0;
         user1 = usergenerico;
         ui->stackedWidget->setCurrentIndex(pantallaInicial);
+        ui->label_11->clear();
+        ui->label_12->clear();
     }
     else{
         logoutTimer->start(3000);
@@ -363,5 +447,11 @@ void MainWindow::on_botonREGISTRO_released()
 void MainWindow::on_botonSalirReg_released()
 {
     ui->stackedWidget->setCurrentIndex(pantallaInicial);
+}
+
+
+void MainWindow::on_pushButton_4_pressed()
+{
+    EnviarComando(0X02,CMD_ALIVE,payload);
 }
 

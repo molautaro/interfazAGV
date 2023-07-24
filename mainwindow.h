@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "login.h"
 #include <QDateTime>
+#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPortInfo>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -75,6 +77,12 @@ private slots:
 
     void actualizarLastInteractionTime();
 
+    void OnQSerialPort1Rx();
+
+    void EnviarComando(uint8_t length, uint8_t cmd, uint8_t payload[]);
+
+
+    void on_pushButton_4_pressed();
 
 private:
     Ui::MainWindow *ui;
@@ -83,7 +91,9 @@ private:
     login *loginVentanaEmergente;
     User *user1 = new User("user", "user");
     User *usergenerico = new User("user", "user");
+    QSerialPort* serial;
     QString estacion;
+    uint8_t TX[256], payload[8],RX[256],indiceRX=0;
     bool iniciosesion=0;
     #define pantallaInicial 0
     #define pantallaSelecEst 1
@@ -91,5 +101,15 @@ private:
     #define pantallaViaje 4
     #define pantallaDest 5
     #define pantallaReg 3
+
+
+    // Define las constantes para los comandos
+    #define CMD_LED_ON_OFF 0xC0
+    #define CMD_WALL_BOUNCE 0xC1
+    #define CMD_ALIVE 0xD2
+
+    // Define un tamaño máximo para el buffer TX
+    const int MAX_TX_SIZE = 256; // Ajusta el tamaño según tus necesidades
+
 };
 #endif // MAINWINDOW_H

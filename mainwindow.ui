@@ -48,7 +48,7 @@
      <string notr="true">background-color: rgb(240, 240, 240);</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_4">
      <widget class="QLabel" name="label_4">
@@ -309,6 +309,42 @@ border-color: rgb(0, 0, 255);</string>
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QLabel" name="label_21">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>250</y>
+        <width>91</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>330</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>440</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="page">
@@ -586,7 +622,7 @@ border-color: rgb(0, 0, 255);</string>
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="128">
+                <color alpha="255">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
@@ -651,7 +687,7 @@ border-color: rgb(0, 0, 255);</string>
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="128">
+                <color alpha="255">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
@@ -716,7 +752,7 @@ border-color: rgb(0, 0, 255);</string>
               </colorrole>
               <colorrole role="PlaceholderText">
                <brush brushstyle="SolidPattern">
-                <color alpha="128">
+                <color alpha="255">
                  <red>0</red>
                  <green>0</green>
                  <blue>0</blue>
