@@ -18,6 +18,23 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    typedef struct {
+        uint8_t *buf;
+        uint8_t iW;
+        uint8_t iR;
+        uint8_t header;
+        uint16_t timeout;
+        uint8_t nBytes;
+        uint8_t iData;
+        uint8_t cks;
+    }__attribute__((packed, aligned(1))) _rx;
+
+    typedef struct {
+        uint8_t *buf;
+        uint8_t iW;
+        uint8_t iR;
+        uint8_t cks;
+    }__attribute__((packed, aligned(1))) _tx;
 
 public slots: // Agrega esta sección
     void manejarBotonPresionadoSI();
@@ -81,10 +98,19 @@ private slots:
 
     void EnviarComando(uint8_t length, uint8_t cmd, uint8_t payload[]);
 
+    void Decode();
+
+    void CheckChecksumAndReceiveData();
+    void UpdateChecksum();
+    void CheckBytesLeft();
+    void RecibirDatos(uint8_t head);
 
     void on_pushButton_4_pressed();
 
 private:
+
+
+
     Ui::MainWindow *ui;
     QDateTime lastInteractionTime;
     QTimer *logoutTimer;
@@ -93,7 +119,9 @@ private:
     User *usergenerico = new User("user", "user");
     QSerialPort* serial;
     QString estacion;
-    uint8_t TX[256], payload[8],RX[256],indiceRX=0;
+    uint8_t TX[256], payload[8],RX[256],indiceRX_r=0,indiceRX_t=0;
+    volatile _rx ringRx;
+    volatile _tx ringTx;
     bool iniciosesion=0;
     #define pantallaInicial 0
     #define pantallaSelecEst 1
@@ -103,10 +131,15 @@ private:
     #define pantallaReg 3
 
 
+
     // Define las constantes para los comandos
     #define CMD_LED_ON_OFF 0xC0
     #define CMD_WALL_BOUNCE 0xC1
     #define CMD_ALIVE 0xD2
+    #define CMD_SENSORS 0xA0
+    #define CMD_MAG_SENSOR 0xA1
+    #define CMD_RFID_SENSOR 0xA2
+    #define CMD_EMERGENCY_STOP 0xB0
 
     // Define un tamaño máximo para el buffer TX
     const int MAX_TX_SIZE = 256; // Ajusta el tamaño según tus necesidades

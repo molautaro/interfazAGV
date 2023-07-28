@@ -24,10 +24,21 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
+    ringTx.buf=TX;
+    ringRx.buf=RX;
+    ringTx.iW=0;
+    ringTx.iR=0;
+    ringRx.iW=0;
+    ringRx.iR=0;
+    ringRx.header=0;
+
+
     serial = new QSerialPort(this);
         //serial->setPortName("COM4"); // Ajusta el nombre del puerto a tu puerto correcto.
-        serial->setPortName("COM4");
-        serial->setBaudRate(QSerialPort::Baud115200);
+        serial->setPortName("COM6");
+        serial->setBaudRate(QSerialPort::Baud9600);
         serial->open(QSerialPort::ReadWrite);
         serial->setDataTerminalReady(true);
         connect(serial, &QSerialPort::readyRead, this, &MainWindow::OnQSerialPort1Rx);
@@ -103,9 +114,98 @@ void MainWindow::OnQSerialPort1Rx()
     for (int i = 0; i < data.size(); i++)
         strhex = strhex + QString("%1").arg(static_cast<quint8>(data[i]), 2, 16, QChar('0')).toUpper();
 
-    mensaje = QString::fromLatin1(data);
+    //strData = QString::fromLatin1(data);
+
+    for (int i = 0; i < data.size(); i++)
+        {
+            ringRx.buf[ringRx.iW] = data[i];
+            ringRx.iW++;
+            Decode();
+        }
+
     ui->lineEdit->setText(strhex);
-    ui->label_21->setText(mensaje);
+    //ui->label_21->setText(QString::fromLatin1(data));
+}
+
+void MainWindow::Decode(){
+    if(ringRx.iW == ringRx.iR)
+        return;
+
+    switch (ringRx.header)
+    {
+        case 0:
+            if (ringRx.buf[ringRx.iR] == 'U')
+                ringRx.header++;
+            else{
+                ringRx.header = 0;
+                ringRx.iR--;
+            }
+            break;
+        case 1:
+            if (ringRx.buf[ringRx.iR] == 'N')
+                ringRx.header++;
+            else{
+                ringRx.header = 0;
+                ringRx.iR--;
+            }
+            break;
+        case 2:
+            if (ringRx.buf[ringRx.iR] == 'E')
+                ringRx.header++;
+            else{
+                ringRx.header = 0;
+                ringRx.iR--;
+            }
+            break;
+        case 3:
+            if (ringRx.buf[ringRx.iR] == 'R'){
+                ringRx.header++;
+
+            }
+            else{
+                ringRx.header = 0;
+                ringRx.iR--;
+            }
+            break;
+        case 4:
+            ringRx.nBytes = ringRx.buf[ringRx.iR];
+            ringRx.header++;
+            break;
+        case 5:
+            if (ringRx.buf[ringRx.iR] == 0x00)
+                ringRx.header++;
+            else{
+                ringRx.header = 0;
+                ringRx.iR--;
+            }
+            break;
+        case 6:
+            if (ringRx.buf[ringRx.iR] == ':')
+            {
+                ringRx.cks= 'U'^'N'^'E'^'R'^ringRx.nBytes^0x00^':';
+                ringRx.header++;
+                ringRx.iData = ringRx.iR+1;
+                //LED_RED_TOGGLE();
+            }
+            else{
+                ringRx.header = 0;
+                ringRx.iR--;
+            }
+            break;
+
+        case 7:
+            UpdateChecksum();
+            CheckBytesLeft();
+            if(ringRx.nBytes == 0)
+            {
+            CheckChecksumAndReceiveData();
+            }
+            break;
+        default:
+            ringRx.header = 0;
+            break;
+    }
+    ringRx.iR++;
 }
 
 void MainWindow::EnviarComando(uint8_t length, uint8_t cmd, uint8_t payload[])
@@ -129,14 +229,8 @@ void MainWindow::EnviarComando(uint8_t length, uint8_t cmd, uint8_t payload[])
 
     switch (cmd)
     {
-        case CMD_LED_ON_OFF:
-            TX[indTX++] = CMD_LED_ON_OFF;
-            TX[indTX++] = payload[0];
-            TX[indTX++] = payload[1];
-            break;
-        case CMD_WALL_BOUNCE:
-            TX[indTX++] = CMD_WALL_BOUNCE;
-            TX[indTX++] = payload[0];
+        case CMD_SENSORS:
+            TX[indTX++] = CMD_SENSORS;
             break;
         case CMD_ALIVE:
             TX[indTX++] = CMD_ALIVE;
@@ -161,6 +255,47 @@ void MainWindow::EnviarComando(uint8_t length, uint8_t cmd, uint8_t payload[])
     }
 }
 
+void MainWindow::UpdateChecksum()
+{
+    if(ringRx.nBytes > 1)
+    {
+        ringRx.cks ^= ringRx.buf[ringRx.iR];
+    }
+}
+
+void MainWindow::CheckBytesLeft()
+{
+    ringRx.nBytes--;
+    if(ringRx.nBytes == 0)
+    {
+        ringRx.header = 0;
+    }
+}
+
+void MainWindow::CheckChecksumAndReceiveData()
+{
+    if(ringRx.cks == ringRx.buf[ringRx.iR])
+    {
+        RecibirDatos(ringRx.iData);
+    }
+}
+
+void MainWindow::RecibirDatos(uint8_t head){
+    switch (ringRx.buf[head++]){
+        case CMD_ALIVE:
+            ui->label_21->setText("tonto");
+
+            //algo
+        break;
+        case CMD_SENSORS:
+            //timeoutSENSORS = 4;
+            //SENSORS_RECIVE = 1;
+
+        break;
+        default:
+        break;
+    }
+}
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
@@ -336,6 +471,7 @@ void MainWindow::on_BotonVerSens_released()
     if(iniciosesion){
         if(checkPermission("Ver Sensores")){
             ui->stackedWidget->setCurrentIndex(pantallaSens);
+            EnviarComando(0x02,CMD_SENSORS,payload);
         }
     }else{
         mostrarLogin();
