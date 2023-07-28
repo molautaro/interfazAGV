@@ -11,6 +11,24 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+typedef struct {
+    uint8_t *buf;
+    uint8_t iW;
+    uint8_t iR;
+    uint8_t header;
+    uint16_t timeout;
+    uint8_t nBytes;
+    uint8_t iData;
+    uint8_t cks;
+}__attribute__((packed, aligned(1))) _rx;
+
+typedef struct {
+    uint8_t *buf;
+    uint8_t iW;
+    uint8_t iR;
+    uint8_t cks;
+}__attribute__((packed, aligned(1))) _tx;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -18,23 +36,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    typedef struct {
-        uint8_t *buf;
-        uint8_t iW;
-        uint8_t iR;
-        uint8_t header;
-        uint16_t timeout;
-        uint8_t nBytes;
-        uint8_t iData;
-        uint8_t cks;
-    }__attribute__((packed, aligned(1))) _rx;
-
-    typedef struct {
-        uint8_t *buf;
-        uint8_t iW;
-        uint8_t iR;
-        uint8_t cks;
-    }__attribute__((packed, aligned(1))) _tx;
 
 public slots: // Agrega esta sección
     void manejarBotonPresionadoSI();

@@ -103,8 +103,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::OnQSerialPort1Rx()
 {
-    static QString mensaje;
-
     QByteArray data = serial->readAll();
     if (data.isEmpty()) {
         return;
@@ -212,28 +210,27 @@ void MainWindow::EnviarComando(uint8_t length, uint8_t cmd, uint8_t payload[])
 {
     static uint8_t indTX = 0;
     // Comprobar el desbordamiento del buffer
-    if (indTX + length + 6 > MAX_TX_SIZE)
+    if (length + 6 > MAX_TX_SIZE)
     {
         // Manejar el error de desbordamiento
         // ...
         return;
     }
 
-    TX[indTX++] = 'U';
-    TX[indTX++] = 'N';
-    TX[indTX++] = 'E';
-    TX[indTX++] = 'R';
-    TX[indTX++] = length;
-    TX[indTX++] = 0x00;
-    TX[indTX++] = ':';
+    TX[0] = 'U';
+    TX[1] = 'N';
+    TX[2] = 'E';
+    TX[3] = 'R';
+    TX[4] = length;
+    TX[5] = 0x00;
+    TX[6] = ':';
 
     switch (cmd)
     {
         case CMD_SENSORS:
-            TX[indTX++] = CMD_SENSORS;
             break;
         case CMD_ALIVE:
-            TX[indTX++] = CMD_ALIVE;
+            TX[7] = CMD_ALIVE;
             break;
         default:
             // Manejar el error de comando no reconocido
@@ -243,16 +240,16 @@ void MainWindow::EnviarComando(uint8_t length, uint8_t cmd, uint8_t payload[])
 
     // Calcular el checksum
     uint8_t cks = 0;
-    for (int i = 0; i < indTX; i++)
-    {
-        cks ^= TX[i];
-    }
-    TX[indTX++] = cks;
+    cks=0;
 
-    if (serial->isOpen())
-    {
-        serial->write((char*)TX, indTX);
-    }
+        for(int i=0; i<TX[4]+6; i++){
+            cks ^= TX[i];
+        }
+        TX[TX[4]+6] = cks;
+
+        if(serial->isOpen()){
+            serial->write((char*)TX, 7 + TX[4]);
+        }
 }
 
 void MainWindow::UpdateChecksum()
@@ -281,10 +278,12 @@ void MainWindow::CheckChecksumAndReceiveData()
 }
 
 void MainWindow::RecibirDatos(uint8_t head){
+    static uint8_t cont=0;
     switch (ringRx.buf[head++]){
         case CMD_ALIVE:
             ui->label_21->setText("tonto");
-
+            cont++;
+            ui->label_22->setNum(cont);
             //algo
         break;
         case CMD_SENSORS:
