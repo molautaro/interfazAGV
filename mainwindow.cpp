@@ -55,6 +55,11 @@ MainWindow::MainWindow(QWidget *parent)
     //logoutTimer->start(180000); // 3 minutos (180000 milisegundos)
     logoutTimer->start(60000);
 
+    decodeTimer = new QTimer(this);
+    connect(decodeTimer, &QTimer::timeout, this, &MainWindow::Decode);
+    //logoutTimer->start(180000); // 3 minutos (180000 milisegundos)
+    decodeTimer->start(1);
+
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
 
@@ -118,7 +123,7 @@ void MainWindow::OnQSerialPort1Rx()
         {
             ringRx.buf[ringRx.iW] = data[i];
             ringRx.iW++;
-            Decode();
+            //Decode();
         }
 
     ui->lineEdit->setText(strhex);
@@ -136,7 +141,7 @@ void MainWindow::Decode(){
                 ringRx.header++;
             else{
                 ringRx.header = 0;
-                ringRx.iR--;
+                //ringRx.iR--;
             }
             break;
         case 1:
@@ -144,7 +149,7 @@ void MainWindow::Decode(){
                 ringRx.header++;
             else{
                 ringRx.header = 0;
-                ringRx.iR--;
+                //ringRx.iR--;
             }
             break;
         case 2:
@@ -152,7 +157,7 @@ void MainWindow::Decode(){
                 ringRx.header++;
             else{
                 ringRx.header = 0;
-                ringRx.iR--;
+                //ringRx.iR--;
             }
             break;
         case 3:
@@ -162,7 +167,7 @@ void MainWindow::Decode(){
             }
             else{
                 ringRx.header = 0;
-                ringRx.iR--;
+                //ringRx.iR--;
             }
             break;
         case 4:
@@ -174,7 +179,7 @@ void MainWindow::Decode(){
                 ringRx.header++;
             else{
                 ringRx.header = 0;
-                ringRx.iR--;
+                //ringRx.iR--;
             }
             break;
         case 6:
@@ -187,7 +192,7 @@ void MainWindow::Decode(){
             }
             else{
                 ringRx.header = 0;
-                ringRx.iR--;
+                //ringRx.iR--;
             }
             break;
 
@@ -279,10 +284,11 @@ void MainWindow::CheckChecksumAndReceiveData()
 
 void MainWindow::RecibirDatos(uint8_t head){
     static uint8_t cont=0;
+    cont++;
     switch (ringRx.buf[head++]){
         case CMD_ALIVE:
             ui->label_21->setText("tonto");
-            cont++;
+
             ui->label_22->setNum(cont);
             //algo
         break;

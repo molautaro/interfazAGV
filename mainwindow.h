@@ -114,7 +114,7 @@ private:
 
     Ui::MainWindow *ui;
     QDateTime lastInteractionTime;
-    QTimer *logoutTimer;
+    QTimer *logoutTimer, *decodeTimer;
     login *loginVentanaEmergente;
     User *user1 = new User("user", "user");
     User *usergenerico = new User("user", "user");
