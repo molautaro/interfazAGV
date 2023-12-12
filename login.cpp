@@ -63,6 +63,7 @@ void login::on_botonLOGIN_pressed()
         ui->labelError_log->setText("Login exitoso");
         User *user = new User(username, role); // Asume que tienes el rol del usuario de alguna manera
         emit userLoggedIn(user); // Asume que has declarado esta señal en tu clase de login
+        this->close();
     } else {
         ui->labelError_log->setText("Usuario o contraseña incorrecto");
         QMessageBox::warning(this, "Login", "Usuario o contraseña incorrecto");
@@ -70,4 +71,10 @@ void login::on_botonLOGIN_pressed()
 }
 
 
+
+
+void login::on_BotonSalirEst_pressed()
+{
+    this->close();
+}
 

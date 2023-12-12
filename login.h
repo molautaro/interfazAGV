@@ -24,6 +24,8 @@ private slots:
     void on_botonLOGIN_pressed();
 
 
+    void on_BotonSalirEst_pressed();
+
 private:
     Ui::login *ui;
 };

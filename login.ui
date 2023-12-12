@@ -96,7 +96,7 @@ color: rgb(0, 0, 0);</string>
   <widget class="QPushButton" name="botonLOGIN">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>20</x>
      <y>360</y>
      <width>301</width>
      <height>61</height>
@@ -152,6 +152,42 @@ color: rgb(0, 0, 0);</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="BotonSalirEst">
+   <property name="geometry">
+    <rect>
+     <x>335</x>
+     <y>360</y>
+     <width>61</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>18</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+		
+	
+	
+	background-color: rgb(255, 0, 0);
+	   color: rgb(0, 0, 0);   
+       border: 2px solid rgb(64, 64, 64);
+       border-radius: 5px;
+    }
+
+    QPushButton:pressed {
+	color: rgb(255, 255, 255);
+	
+	background-color: rgb(122, 0, 0);
+    }</string>
+   </property>
+   <property name="text">
+    <string>X</string>
    </property>
   </widget>
  </widget>
