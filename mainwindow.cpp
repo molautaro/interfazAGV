@@ -502,7 +502,7 @@ void MainWindow::on_pushButton_3_pressed()
 }
 
 bool MainWindow::checkPermission(const QString &action) {
-            if (user1->getRole() == "admin") {
+            if (user1->getRole() == "Admin") {
                 if (action == "Ver Sensores") {
                     return true;
                 }
@@ -513,7 +513,7 @@ bool MainWindow::checkPermission(const QString &action) {
                     return true;
                 }
             }
-            if (user1->getRole() == "user") {
+            if (user1->getRole() == "User") {
                 if(action == "Elegir Estacion"){
                     return true;
                 }
