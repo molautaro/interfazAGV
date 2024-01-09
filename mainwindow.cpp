@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    this->showFullScreen();
 
     ringTx.buf=TX;
     ringRx.buf=RX;
@@ -37,8 +38,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     serial = new QSerialPort(this);
         //serial->setPortName("COM4"); // Ajusta el nombre del puerto a tu puerto correcto.
-        serial->setPortName("COM6");
-        serial->setBaudRate(QSerialPort::Baud9600);
+serial->setPortName("ttyACM0");
+serial->setBaudRate(QSerialPort::Baud9600);
         serial->open(QSerialPort::ReadWrite);
         serial->setDataTerminalReady(true);
         connect(serial, &QSerialPort::readyRead, this, &MainWindow::OnQSerialPort1Rx);
@@ -502,7 +503,7 @@ void MainWindow::on_pushButton_3_pressed()
 }
 
 bool MainWindow::checkPermission(const QString &action) {
-            if (user1->getRole() == "admin") {
+            if (user1->getRole() == "Admin") {
                 if (action == "Ver Sensores") {
                     return true;
                 }
@@ -513,7 +514,7 @@ bool MainWindow::checkPermission(const QString &action) {
                     return true;
                 }
             }
-            if (user1->getRole() == "user") {
+            if (user1->getRole() == "User") {
                 if(action == "Elegir Estacion"){
                     return true;
                 }

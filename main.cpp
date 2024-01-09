@@ -6,6 +6,8 @@
 
 int main(int argc, char *argv[])
 {
+    qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
+
     MyApplication a(argc, argv);
 
     QTranslator translator;

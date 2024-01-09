@@ -9,8 +9,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Core SerialPort)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools VirtalKeyboard)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Core SerialPort VirtualKeyboard)
+#find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets VirtualKeyboard REQUIRED) #agregue esto para intentar agregrar el teclado
 
 set(TS_FILES interfazAGV_PROTOTIPO_es_AR.ts)
 
@@ -59,7 +60,7 @@ else()
 endif()
 
 target_link_libraries(interfazAGV_PROTOTIPO PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
-    Qt${QT_VERSION_MAJOR}::SerialPort)
+    Qt${QT_VERSION_MAJOR}::VirtualKeyboard Qt${QT_VERSION_MAJOR}::SerialPort)
 
 set_target_properties(interfazAGV_PROTOTIPO PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
