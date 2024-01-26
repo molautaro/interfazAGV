@@ -27,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->showFullScreen();
 
+    // Inicializa el sensor HC-SR04 (ajusta los pines según tu configuración)
+    sensor = new UltrasonicSensor(18, 24); // Asegúrate de que estos pines sean correctos para tu configuración
     ringTx.buf=TX;
     ringRx.buf=RX;
     ringTx.iW=0;
@@ -38,8 +40,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     serial = new QSerialPort(this);
         //serial->setPortName("COM4"); // Ajusta el nombre del puerto a tu puerto correcto.
-serial->setPortName("ttyACM0");
-serial->setBaudRate(QSerialPort::Baud9600);
+    serial->setPortName("ttyACM0");
+    serial->setBaudRate(QSerialPort::Baud9600);
         serial->open(QSerialPort::ReadWrite);
         serial->setDataTerminalReady(true);
         connect(serial, &QSerialPort::readyRead, this, &MainWindow::OnQSerialPort1Rx);
@@ -60,6 +62,11 @@ serial->setBaudRate(QSerialPort::Baud9600);
     connect(decodeTimer, &QTimer::timeout, this, &MainWindow::Decode);
     //logoutTimer->start(180000); // 3 minutos (180000 milisegundos)
     decodeTimer->start(1);
+
+    updateTimer = new QTimer(this);
+    connect(updateTimer, &QTimer::timeout, this, &MainWindow::updateDistance);
+    updateTimer->start(1000); // Actualiza cada 1000 ms (1 segundo)
+
 
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
@@ -129,6 +136,12 @@ void MainWindow::OnQSerialPort1Rx()
 
     ui->lineEdit->setText(strhex);
     //ui->label_21->setText(QString::fromLatin1(data));
+}
+
+void MainWindow::updateDistance()
+{
+    double distance = sensor->getDistance(); // Lee la distancia del sensor
+    ui->label_23->setText(QString::number(distance, 'f', 2) + " cm"); // Actualiza el label con la distancia
 }
 
 void MainWindow::Decode(){

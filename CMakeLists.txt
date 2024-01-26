@@ -29,6 +29,8 @@ set(PROJECT_SOURCES
         user.h
         myapplication.h
         myapplication.cpp
+        ultrasonicsensor.h
+        ultrasonicsensor.cpp
         ${TS_FILES}
 )
 
@@ -59,8 +61,25 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
+if(NOT WIN32)
+    # Encuentra la biblioteca pigpio en el sistema (solo para sistemas Unix)
+    find_library(PIGPIO_LIBRARY pigpio)
+
+    # Asegúrate de que la biblioteca se haya encontrado
+    if(NOT PIGPIO_LIBRARY)
+        message(FATAL_ERROR "pigpio library not found")
+    endif()
+
+    # Vincula la biblioteca pigpio con tu aplicación (solo para sistemas Unix)
+    target_link_libraries(interfazAGV_PROTOTIPO PRIVATE ${PIGPIO_LIBRARY})
+endif()
+
 target_link_libraries(interfazAGV_PROTOTIPO PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::VirtualKeyboard Qt${QT_VERSION_MAJOR}::SerialPort)
+
+# Vincula la biblioteca pigpio con tu aplicación
+# arget_link_libraries(interfazAGV_PROTOTIPO PRIVATE ${PIGPIO_LIBRARY})
+
 
 set_target_properties(interfazAGV_PROTOTIPO PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

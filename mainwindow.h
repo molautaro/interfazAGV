@@ -6,6 +6,8 @@
 #include <QDateTime>
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
+#include "ultrasonicsensor.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -113,11 +115,13 @@ private:
 
 
     Ui::MainWindow *ui;
+    void updateDistance();
     QDateTime lastInteractionTime;
-    QTimer *logoutTimer, *decodeTimer;
+    QTimer *logoutTimer, *decodeTimer, *updateTimer;
     login *loginVentanaEmergente;
     User *user1 = new User("user", "user");
     User *usergenerico = new User("user", "user");
+    UltrasonicSensor *sensor;
     QSerialPort* serial;
     QString estacion;
     uint8_t TX[256], payload[8],RX[256],indiceRX_r=0,indiceRX_t=0;
