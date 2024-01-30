@@ -20,6 +20,9 @@
 #include <QtSerialPort/QSerialPortInfo>
 #include <QDebug>
 #include <QThread>
+#ifdef __linux__
+#include <pigpio.h>
+#endif
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -127,6 +130,9 @@ MainWindow::~MainWindow()
     sensorThread->quit();
     sensorThread->wait();
     delete sensorThread; // sensor se borrará automáticamente debido a deleteLater
+    #ifdef __linux__
+    gpioTerminate(); // Limpieza de la biblioteca pigpio
+    #endif
 }
 
 void MainWindow::OnQSerialPort1Rx()
