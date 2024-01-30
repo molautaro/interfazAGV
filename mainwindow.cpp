@@ -3,6 +3,7 @@
 #include "login.h"
 #include "user.h"
 #include "./ui_mainwindow.h"
+#include "ultrasonicsensor.h"
 #include <QGraphicsView>
 #include <QGraphicsEllipseItem>
 #include <QGraphicsLineItem>
@@ -18,6 +19,7 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QDebug>
+#include <QThread>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -27,8 +29,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->showFullScreen();
 
-    // Inicializa el sensor HC-SR04 (ajusta los pines según tu configuración)
-    sensor = new UltrasonicSensor(18, 24); // Asegúrate de que estos pines sean correctos para tu configuración
     ringTx.buf=TX;
     ringRx.buf=RX;
     ringTx.iW=0;
@@ -63,9 +63,20 @@ MainWindow::MainWindow(QWidget *parent)
     //logoutTimer->start(180000); // 3 minutos (180000 milisegundos)
     decodeTimer->start(1);
 
-    updateTimer = new QTimer(this);
-    connect(updateTimer, &QTimer::timeout, this, &MainWindow::updateDistance);
-    updateTimer->start(1000); // Actualiza cada 1000 ms (1 segundo)
+    // Setup sensor
+    UltrasonicSensor *sensor = new UltrasonicSensor(18, 24); // Asegúrate de ajustar los pines
+
+    QThread *sensorThread = new QThread(this);
+    sensor->moveToThread(sensorThread);
+
+    connect(sensorThread, &QThread::finished, sensor, &QObject::deleteLater);
+    connect(this, &MainWindow::startMeasurement, sensor, &UltrasonicSensor::measureDistance);
+    //connect(sensor, &UltrasonicSensor::distanceMeasured, this, &MainWindow::updateDistanceLabel);
+    connect(sensor, &UltrasonicSensor::distanceMeasured, this, &MainWindow::updateDistance);
+
+
+    sensorThread->start();
+    emit startMeasurement(); // Puedes llamarlo en un temporizador si necesitas mediciones continuas
 
 
     QTime time = QTime::currentTime();
@@ -112,6 +123,10 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+
+    sensorThread->quit();
+    sensorThread->wait();
+    delete sensorThread; // sensor se borrará automáticamente debido a deleteLater
 }
 
 void MainWindow::OnQSerialPort1Rx()
@@ -138,10 +153,8 @@ void MainWindow::OnQSerialPort1Rx()
     //ui->label_21->setText(QString::fromLatin1(data));
 }
 
-void MainWindow::updateDistance()
-{
-    double distance = sensor->getDistance(); // Lee la distancia del sensor
-    ui->label_23->setText(QString::number(distance, 'f', 2) + " cm"); // Actualiza el label con la distancia
+void MainWindow::updateDistance(double distance) {
+    ui->label_23->setText(QString::number(distance, 'f', 2) + " cm");
 }
 
 void MainWindow::Decode(){

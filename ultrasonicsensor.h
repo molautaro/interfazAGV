@@ -1,16 +1,25 @@
 #ifndef ULTRASONICSENSOR_H
 #define ULTRASONICSENSOR_H
 
-class UltrasonicSensor {
+#include <QObject>
+
+class UltrasonicSensor : public QObject {
+    Q_OBJECT
 public:
-    UltrasonicSensor(int triggerPin, int echoPin);
+    explicit UltrasonicSensor(int triggerPin, int echoPin, QObject *parent = nullptr);
     ~UltrasonicSensor();
-    double getDistance(); // Devuelve la distancia en centímetros.
+
+signals:
+    void distanceMeasured(double distance);
+
+public slots:
+    void measureDistance();
 
 private:
     int triggerPin;
     int echoPin;
     void sendPulse();
+    double getDistance(); // Devuelve la distancia en centímetros.
 };
 
 #endif // ULTRASONICSENSOR_H

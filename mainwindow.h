@@ -39,10 +39,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void startMeasurement();
+
 public slots: // Agrega esta sección
     void manejarBotonPresionadoSI();
     void manejarBotonPresionadoNO();
-    void handleUserLoggedIn(User* user);;
+    void handleUserLoggedIn(User* user);
+    void updateDistance(double distance); // Asegúrate de que acepta un parámetro double
+
+
 
 
 private slots:
@@ -115,13 +121,14 @@ private:
 
 
     Ui::MainWindow *ui;
-    void updateDistance();
+    //void updateDistance();
     QDateTime lastInteractionTime;
     QTimer *logoutTimer, *decodeTimer, *updateTimer;
     login *loginVentanaEmergente;
     User *user1 = new User("user", "user");
     User *usergenerico = new User("user", "user");
     UltrasonicSensor *sensor;
+    QThread* sensorThread;
     QSerialPort* serial;
     QString estacion;
     uint8_t TX[256], payload[8],RX[256],indiceRX_r=0,indiceRX_t=0;
